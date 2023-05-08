@@ -1,0 +1,2 @@
+# minivim
+minimalist neovim
