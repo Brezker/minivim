@@ -14,18 +14,20 @@ let mapleader=" "
 " Charging Plugins
 call plug#begin('./nvim/site/autoload/plugged')
 	Plug 'https://github.com/scrooloose/nerdtree'
-	Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+	Plug 'folke/tokyonight.nvim'
 	Plug 'ryanoasis/vim-devicons'
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
+	Plug 'numToStr/Comment.nvim'
 	" If you want to have icons in your statusline choose one of these
 	Plug 'nvim-tree/nvim-web-devicons'
 call plug#end()
 
 " Plugins config
-colorscheme tokyonight
+"colorscheme tokyonight
+colorscheme tokyonight-moon
 
 " Basic maps for explorer
 nnoremap <leader>e :NERDTreeToggle<CR>
@@ -68,6 +70,12 @@ let g:NERDTreeShowHidden = 1
 
 " Automaticaly close nvim if NERDTree is only thing left open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Commenter
+lua require('Comment').setup()
+nnoremap <silent> <leader>/ :<C-u>call feedkeys("gcc")<CR>
+vmap <leader>/ gc
+" vmap <leader>? gb
 
 " no sirve aun let NERDTreeMapOpenInTabSilent='<Return>'
 
